@@ -51,7 +51,7 @@ public class UniversityStepDefinitions {
 
     @Then("the requests response will contain universities with country {string}")
     public void verifyResponseContainUniversitiesWithCountry(String expectedCountry) {
-        assertEquals(response.getStatusCode(), 200,
+        assertEquals(200, response.getStatusCode(),
                 String.format("Response should return 200 status, received status %s", response.getStatusCode()));
         String responseBody = response.body().asString();
         List<University> responseUniversities = Arrays.asList(GSON.fromJson(responseBody, University[].class));
@@ -61,7 +61,7 @@ public class UniversityStepDefinitions {
 
     @Then("the requests response will contain universities containing name {string}")
     public void verifyResponseContainUniversitiesWithName(String expectedName) {
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
         String responseBody = response.body().asString();
         List<University> responseUniversities = Arrays.asList(GSON.fromJson(responseBody, University[].class));
         responseUniversities.forEach(university -> assertTrue(StringUtils.containsAnyIgnoreCase(university.getName(), expectedName),
@@ -70,7 +70,7 @@ public class UniversityStepDefinitions {
 
     @Then("the requests response will contain {int} universities")
     public void verifyResponseContainUniversitiesWithName(int expectedUniversitiesCount) {
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(200, response.getStatusCode());
         String responseBody = response.body().asString();
         List<University> responseUniversities = Arrays.asList(GSON.fromJson(responseBody, University[].class));
         assertEquals(responseUniversities.size(), expectedUniversitiesCount,
